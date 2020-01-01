@@ -6,13 +6,13 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
   web:
     build: .
-    command: mix phx.server
+    command: bash
     environment:
       MIX_ENV: "dev"
       PORT: "4000"
     volumes:
-      - ./app:/app
-    working_dir: /app
+      - ./apps:/apps
+    working_dir: /apps
     ports:
       - "4000:4000"
     depends_on:
