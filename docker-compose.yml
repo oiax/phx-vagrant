@@ -1,0 +1,20 @@
+version: "3"
+services:
+  db:
+    image: postgres:12.1-alpine
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+  web:
+    build: .
+    command: mix phx.server
+    environment:
+      MIX_ENV: "dev"
+      PORT: "4000"
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    tty: true
