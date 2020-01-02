@@ -1,4 +1,4 @@
 #!/bin/bash
 set -eu
 
-docker-compose -d
+docker-compose up -d
