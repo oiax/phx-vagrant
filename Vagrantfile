@@ -1,4 +1,3 @@
-Vagrantfile
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -20,5 +19,6 @@ Vagrant.configure("2") do |config|
     git clone https://github.com/oiax/phx-compose.git
     cd phx-compose
     bin/install_docker_on_ubuntu.sh
+    usermod -aG docker vagrant
   SHELL
 end
