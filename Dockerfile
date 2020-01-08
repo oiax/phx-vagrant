@@ -6,7 +6,7 @@ ENV DEBCONF_NOWARNINGS yes
 
 RUN apt-get update
 RUN apt-get -y upgrade
-RUN apt-get -y install git vim sudo inotify-tools wrk
+RUN apt-get -y install git vim sudo inotify-tools
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
