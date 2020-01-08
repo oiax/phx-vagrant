@@ -14,11 +14,11 @@ Vagrant.configure("2") do |config|
     vb.memory = "4096"
   end
 
-  config.vm.provision "shell", inline: <<-SHELL
-    apt-get update
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    sudo apt-get update
     git clone https://github.com/oiax/phx-compose.git
     cd phx-compose
     bin/install_docker_on_ubuntu.sh
-    usermod -aG docker vagrant
+    sudo usermod -aG docker vagrant
   SHELL
 end
