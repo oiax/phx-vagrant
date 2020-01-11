@@ -1,3 +1,3 @@
-/apps
-/.vagrant
+/app/*
+!/app/.gitkeep
 /*.log

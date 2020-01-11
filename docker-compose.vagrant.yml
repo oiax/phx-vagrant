@@ -3,7 +3,7 @@ services:
   db:
     image: postgres:12.1-alpine
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - /opt/db:/var/lib/postgresql/data
   web:
     build: .
     command: mix phx.server
@@ -11,8 +11,11 @@ services:
       MIX_ENV: "dev"
       PORT: "4000"
     volumes:
-      - ./apps:/apps
-    working_dir: /apps
+      - ./app:/app
+      - /home/vagrant/_build:/app/_build
+      - /home/vagrant/deps:/app/deps
+      - /home/vagrant/assets/node_modules:/app/assets/node_modules
+    working_dir: /app
     ports:
       - "4000:4000"
     depends_on:
