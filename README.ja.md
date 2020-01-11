@@ -24,6 +24,8 @@ Vagrant を用いて Elixir/Phoenix アプリケーションの開発・学習�
 ## 環境構築手順
 
 ```
+% git clone https://github.com/oiax/phx-vagrant.git
+% cd phx-vagrant
 % vagrant up
 % vagrant ssh
 $ bin/setup.sh

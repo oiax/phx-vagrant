@@ -26,6 +26,8 @@ A set of configuration files etc. to start developing and learning Elixir/Phoeni
 ## Environment Building Procedure
 
 ```
+% git clone https://github.com/oiax/phx-vagrant.git
+% cd phx-vagrant
 % vagrant up
 % vagrant ssh
 $ bin/setup.sh
