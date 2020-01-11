@@ -42,7 +42,42 @@ $ bin/login.sh
 
 ## データベース接続設定の変更
 
-テキストエディタで `config/dev.exs` を開き、`hostname` の値を `"localhost"` から `"db"` に変更する。
+テキストエディタで `config/dev.exs` を開き、`hostname` の値を `"localhost"` から `"db"` に変更してください。
+
+## phoenix_live_reload の設定
+
+以下の記述を `config/dev.exs` の `MyApp.Endpoint` に関する設定の前に追加してください。
+
+```
+if System.get_env("COMPOSE_FILE") == "docker-compose.vagrant.yml" do
+  config :phoenix_live_reload,
+    backend: :fs_poll,
+    backend_opts: [
+      interval: 500
+    ],
+    dirs: [
+      "priv/static",
+      "priv/gettext",
+      "lib/my_app_web/live",
+      "lib/my_app_web/templates",
+      "lib/my_app_web/views"
+    ]
+end
+```
+
+## webpack の設定
+
+`assets/webpack.config.js` の末尾の `});` の前に以下の記述を追加してください。
+
+```
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000,
+    ignored: /node_modules/
+  }
+```
+
+直前の `]` の後にコンマがなければ、追加してください。
 
 ## データベースの作成
 
@@ -57,7 +92,7 @@ $ bin/login.sh
 $ bin/start.sh
 ```
 
-`Ctrl-C` を入力すればサーバーを停止できる。
+`Ctrl-C` を入力すればサーバーを停止できます。
 
 ## Dockerコンテナ内での作業
 

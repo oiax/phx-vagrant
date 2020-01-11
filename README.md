@@ -46,6 +46,41 @@ $ bin/login.sh
 
 Open `config/dev.exs` with a text editor and change the value of `hostname` from `"localhost"` to `"db"`.
 
+## Configuration of phoenix_live_reload
+
+Add these lines before the settings of `MyApp.Endpoint` in `config/dev.exs`.
+
+```
+if System.get_env("COMPOSE_FILE") == "docker-compose.vagrant.yml" do
+  config :phoenix_live_reload,
+    backend: :fs_poll,
+    backend_opts: [
+      interval: 500
+    ],
+    dirs: [
+      "priv/static",
+      "priv/gettext",
+      "lib/my_app_web/live",
+      "lib/my_app_web/templates",
+      "lib/my_app_web/views"
+    ]
+end
+```
+
+## Configuration of webpack
+
+Add the following description before `});` at the end of `assets/webpack.config.js`.
+
+```
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000,
+    ignored: /node_modules/
+  }
+```
+
+If there is no comma after the previous `]`, add it.
+
 ## Creating a Database
 
 ```
