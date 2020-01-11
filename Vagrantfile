@@ -19,12 +19,12 @@ Vagrant.configure("2") do |config|
       sudo usermod -aG docker vagrant
     fi
 
-    if [[! grep -q "fs.inotify.max_user_watches" /etc/sysctl.conf]] ; then
+    if ! grep -q "fs.inotify.max_user_watches" /etc/sysctl.conf ; then
       echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
       sudo sysctl -p
     fi
 
-    if [[ ! grep -q "COMPOSE_FILE" ~/.bashrc ]] ; then
+    if ! grep -q "COMPOSE_FILE" ~/.bashrc ; then
       echo "export COMPOSE_FILE=docker-compose.vagrant.yml" >> ~/.bashrc
       echo "cd /vagrant" >> ~/.bashrc
     fi
