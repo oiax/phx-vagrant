@@ -1,8 +1,10 @@
 # phx-vagrant
 
-Vagrant を用いて Elixir/Phoenix アプリケーションの開発・学習を始めるための設定ファイル等のセット
+A set of configuration files etc. to start developing and learning Elixir/Phoenix application using Vagrant
 
-## 構築される環境
+[README.ja.md](README.ja.md)
+
+## Environment to be built
 
 * Debian 10 (Buster)
 * Erlang/OTP 22.1.8
@@ -11,19 +13,17 @@ Vagrant を用いて Elixir/Phoenix アプリケーションの開発・学習�
 * Node.js 10.18
 * npm 6.13
 
-## 必要なソフトウェア
+## Required softwares
 
-* Oracle VM VirtualBox 6.1 以上
-* Vagrant 2.2 以上
-* Git 2.7 以上
+* Oracle VM VirtualBox 6.1 or above
+* Vagrant 2.2 or above
+* Git 2.7 or above
 
-## 動作確認済みのOS
+## Supported OS
 
 * macOS 10.14 Mojave
-* Ubuntu 16.04
-* Ubuntu 18.04
 
-## 環境構築手順
+## Environment Building Procedure
 
 ```
 % vagrant up
@@ -31,33 +31,33 @@ Vagrant を用いて Elixir/Phoenix アプリケーションの開発・学習�
 $ bin/setup.sh
 ```
 
-## Phoenixアプリケーションの新規作成
+## Creating a new Phoenix Application
 
 ```
 $ bin/login.sh
 > mix phx.new . --module MyApp
 ```
 
-## データベース接続設定の変更
+## Changing Database Connection Settings
 
-テキストエディタで `config/dev.exs` を開き、`hostname` の値を `"localhost"` から `"db"` に変更する。
+Open `config/dev.exs` with a text editor and change the value of `hostname` from `"localhost"` to `"db"`.
 
-## データベースの作成
+## Creating a Database
 
 ```
 > mix ecto.create
 ```
 
-## サーバーの起動
+## Starting the Server
 
 ```
 > exit
 $ bin/start.sh
 ```
 
-`Ctrl-C` を入力すればサーバーを停止できる。
+You can stop the server by typing `Ctrl-C`.
 
-## `mix` コマンド等の実行
+## Working in the Docker Container
 
 ```
 $ bin/login.sh
@@ -65,13 +65,13 @@ $ bin/login.sh
 > exit
 ```
 
-## Dockerコンテナの停止
+## Stopping the Docker Container
 
 ```
 $ bin/stop.sh
 ```
 
-## VirtualBoxゲストマシンの停止
+## Stopping the VirtualBox Guest Machine
 
 ```
 $ exit
