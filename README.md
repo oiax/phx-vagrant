@@ -31,6 +31,8 @@ A set of configuration files etc. to start developing and learning Elixir/Phoeni
 $ bin/setup.sh
 ```
 
+Building this environment for the first time can take over two hours.
+
 ## Creating a new Phoenix Application
 
 ```
