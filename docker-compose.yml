@@ -8,8 +8,7 @@ services:
     build: .
     command: mix phx.server
     environment:
-      MIX_ENV: "dev"
-      PORT: "4000"
+      - COMPOSE_FILE
     volumes:
       - ./apps:/apps
     working_dir: /apps
