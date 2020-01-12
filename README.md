@@ -15,19 +15,24 @@ A set of configuration files etc. to start developing and learning Elixir/Phoeni
 
 ## Required softwares
 
-* Oracle VM VirtualBox 6.1 or above
+* Oracle VM VirtualBox 6.0
 * Vagrant 2.2 or above
 * Git 2.7 or above
+
+As of January 12, 2020, Vagrant does not support VirtualBox 6.1.
 
 ## Supported OS
 
 * macOS 10.14 Mojave
+* Windows 10
 
 ## Environment Building Procedure
 
 ```
+% git config --global core.autocrlf input
 % git clone https://github.com/oiax/phx-vagrant.git
 % cd phx-vagrant
+% vagrant plugin install vagrant-disksize
 % vagrant up
 % vagrant ssh
 $ bin/setup.sh

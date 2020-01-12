@@ -13,19 +13,24 @@ Vagrant を用いて Elixir/Phoenix アプリケーションの開発・学習�
 
 ## 必要なソフトウェア
 
-* Oracle VM VirtualBox 6.1 以上
+* Oracle VM VirtualBox 6.0
 * Vagrant 2.2 以上
 * Git 2.7 以上
+
+2020年1月12日現在、Vagrant は VirtualBox 6.1 に対応していません。
 
 ## 対応OS
 
 * macOS 10.14 Mojave
+* Windows 10
 
 ## 環境構築手順
 
 ```
+% git config --global core.autocrlf input
 % git clone https://github.com/oiax/phx-vagrant.git
 % cd phx-vagrant
+% vagrant plugin install vagrant-disksize
 % vagrant up
 % vagrant ssh
 $ bin/setup.sh
