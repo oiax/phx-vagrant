@@ -37,7 +37,7 @@ $ bin/setup.sh
 
 ```
 $ bin/login.sh
-> mix phx.new . --module MyApp
+> mix phx.new . --app my_app --module MyApp
 ```
 
 ## データベース接続設定の変更
@@ -46,7 +46,7 @@ $ bin/login.sh
 
 ## phoenix_live_reload の設定
 
-以下の記述を `config/dev.exs` の `MyApp.Endpoint` に関する設定の前に追加してください。
+以下の記述を `config/dev.exs` の `MyApp.Repo に関する設定の後に追加してください。
 
 ```
 if System.get_env("COMPOSE_FILE") == "docker-compose.vagrant.yml" do
@@ -58,7 +58,6 @@ if System.get_env("COMPOSE_FILE") == "docker-compose.vagrant.yml" do
     dirs: [
       "priv/static",
       "priv/gettext",
-      "lib/my_app_web/live",
       "lib/my_app_web/templates",
       "lib/my_app_web/views"
     ]
@@ -77,7 +76,7 @@ end
   }
 ```
 
-直前の `]` の後にコンマがなければ、追加してください。
+直前行の `]` の後にコンマを追加してください。
 
 ## データベースの作成
 

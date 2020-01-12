@@ -39,7 +39,7 @@ Building this environment for the first time can take over two hours.
 
 ```
 $ bin/login.sh
-> mix phx.new . --module MyApp
+> mix phx.new . --app my_app --module MyApp
 ```
 
 ## Changing Database Connection Settings
@@ -48,7 +48,7 @@ Open `config/dev.exs` with a text editor and change the value of `hostname` from
 
 ## Configuration of phoenix_live_reload
 
-Add these lines before the settings of `MyApp.Endpoint` in `config/dev.exs`.
+Add these lines after the settings of `MyApp.Repo` in `config/dev.exs`.
 
 ```
 if System.get_env("COMPOSE_FILE") == "docker-compose.vagrant.yml" do
@@ -60,7 +60,6 @@ if System.get_env("COMPOSE_FILE") == "docker-compose.vagrant.yml" do
     dirs: [
       "priv/static",
       "priv/gettext",
-      "lib/my_app_web/live",
       "lib/my_app_web/templates",
       "lib/my_app_web/views"
     ]
@@ -79,7 +78,7 @@ Add the following description before `});` at the end of `assets/webpack.config.
   }
 ```
 
-If there is no comma after the previous `]`, add it.
+Add a comma after `]` of the previous line.
 
 ## Creating a Database
 
