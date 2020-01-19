@@ -110,13 +110,6 @@ and sync them to **A**, run the following command on the guest machine (Ubuntu)
 $ bin/sync_from_container.sh
 ```
 
-If you want to delete and rename files and directories in **A** and sync them to
-**B**, execute the following command on the guest machine (Ubuntu).
-
-```
-$ bin/sync_to_container.sh
-```
-
 Deletion of files and directories is not automatically synced in either direction, but you can sync from **A** to **B** with the following command:
 
 ```
