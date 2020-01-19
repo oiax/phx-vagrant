@@ -19,11 +19,9 @@ RUN groupadd -g $GID devel
 RUN useradd -u $UID -g devel -m devel
 RUN echo "devel ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-COPY --chown=devel:devel ./app /app
-
 USER devel
 
-WORKDIR /app
+WORKDIR /projects
 
 RUN mix local.hex --force
 RUN mix local.rebar --force

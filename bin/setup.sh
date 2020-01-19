@@ -5,7 +5,9 @@ docker-compose stop
 
 rm -rf _build deps
 
-BUILD_CMD="docker-compose build --no-cache"
+docker-compose pull
+
+BUILD_CMD="docker-compose build"
 CONTAINER_NAME="web"
 
 case "$OSTYPE" in

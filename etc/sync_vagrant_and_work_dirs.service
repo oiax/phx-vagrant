@@ -1,0 +1,13 @@
+[Unit]
+Description = Sync /vagrant and /work directories
+
+[Service]
+ExecStart = /vagrant/bin/sync_vagrant_and_work_dirs.sh
+Restart = always
+Type = simple
+User = vagrant
+Group = vagrant
+SyslogIdentifier = sync-vagrant-and-work-dirs
+
+[Install]
+WantedBy = multi-user.target

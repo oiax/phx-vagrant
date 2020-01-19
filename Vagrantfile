@@ -12,7 +12,11 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    export ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
+    export DEBIAN_FRONTEND=noninteractive
+
     sudo apt-get update
+    sudo apt-get upgrade -yq
 
     if [[ ! -f "/usr/bin/docker" ]]; then
       /vagrant/bin/install_docker_on_ubuntu.sh
@@ -24,15 +28,21 @@ Vagrant.configure("2") do |config|
       sudo sysctl -p
     fi
 
-    if ! grep -q "COMPOSE_FILE" ~/.bashrc ; then
-      echo "export COMPOSE_FILE=docker-compose.vagrant.yml" >> ~/.bashrc
-      echo "cd /vagrant" >> ~/.bashrc
+    if [[ ! -d "/work" ]]; then
+      sudo mkdir /work
+      sudo chown vagrant:vagrant /work
+      rsync -a /vagrant/ /work/
     fi
 
-    dirs=(_build deps log assets/node_modules)
+    if ! grep -q "COMPOSE_FILE" ~/.bashrc ; then
+      echo "export COMPOSE_FILE=docker-compose.vagrant.yml" >> ~/.bashrc
+      echo "cd /work" >> ~/.bashrc
+    fi
 
-    for dir in "${dirs[@]}" ; do
-      mkdir -p /home/vagrant/${dir}
-    done
+    if [ ! -f "/etc/systemd/system/sync_vagrant_and_work_dirs.service" ]; then
+      sudo cp /vagrant/etc/sync_vagrant_and_work_dirs.service /etc/systemd/system/
+      sudo systemctl -q enable sync_vagrant_and_work_dirs
+      sudo systemctl -q start sync_vagrant_and_work_dirs
+    fi
   SHELL
 end

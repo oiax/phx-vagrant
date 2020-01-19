@@ -6,15 +6,12 @@ services:
       - /opt/db:/var/lib/postgresql/data
   web:
     build: .
-    command: mix phx.server
+    command: bash
     environment:
       - COMPOSE_FILE
     volumes:
-      - ./app:/app
-      - /home/vagrant/_build:/app/_build
-      - /home/vagrant/deps:/app/deps
-      - /home/vagrant/assets/node_modules:/app/assets/node_modules
-    working_dir: /app
+      - /work/projects:/projects
+    working_dir: /projects
     ports:
       - "4000:4000"
     depends_on:
