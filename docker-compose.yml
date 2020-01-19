@@ -6,12 +6,12 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
   web:
     build: .
-    command: mix phx.server
+    command: bash
     environment:
       - COMPOSE_FILE
     volumes:
-      - ./apps:/apps
-    working_dir: /apps
+      - ./projects:/projects
+    working_dir: /projects
     ports:
       - "4000:4000"
     depends_on:

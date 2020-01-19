@@ -1,4 +1,4 @@
-/app/*
-!/app/.gitkeep
+/projects/*
+!/projects/.gitkeep
 /*.log
 .vagrant

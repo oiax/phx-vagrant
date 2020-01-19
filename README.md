@@ -12,6 +12,7 @@ A set of configuration files etc. to start developing and learning Elixir/Phoeni
 * Phoenix 1.4.11
 * Node.js 10.18
 * npm 6.13
+* PostgreSQL 12 (on Alpine)
 
 ## Required softwares
 
@@ -44,46 +45,15 @@ Building this environment for the first time can take over two hours.
 
 ```
 $ bin/login.sh
-> mix phx.new . --app my_app --module MyApp
+> mix phx.new my_app
+> cd my_app
 ```
 
 ## Changing Database Connection Settings
 
 Open `config/dev.exs` with a text editor and change the value of `hostname` from `"localhost"` to `"db"`.
 
-## Configuration of phoenix_live_reload
-
-Add these lines after the settings of `MyApp.Repo` in `config/dev.exs`.
-
-```
-if System.get_env("COMPOSE_FILE") == "docker-compose.vagrant.yml" do
-  config :phoenix_live_reload,
-    backend: :fs_poll,
-    backend_opts: [
-      interval: 500
-    ],
-    dirs: [
-      "priv/static",
-      "priv/gettext",
-      "lib/my_app_web/templates",
-      "lib/my_app_web/views"
-    ]
-end
-```
-
-## Configuration of webpack
-
-Add the following description before `});` at the end of `assets/webpack.config.js`.
-
-```
-  watchOptions: {
-    aggregateTimeout: 300,
-    poll: 1000,
-    ignored: /node_modules/
-  }
-```
-
-Add a comma after `]` of the previous line.
+You can use a text editor on the host machine or on the Docker container to edit it.
 
 ## Creating a Database
 
@@ -91,19 +61,24 @@ Add a comma after `]` of the previous line.
 > mix ecto.create
 ```
 
-## Starting the Server
+## Starting the Phoenix Server
 
 ```
 > exit
 $ bin/start.sh
+> cd my_app
+> mix phx.server
 ```
 
-You can stop the server by typing `Ctrl-C`.
+Open `http://localhost:4000` with your browser on the host machine.
+
+You can stop the server by typing `Ctrl-C` on the terminal.
 
 ## Working in the Docker Container
 
 ```
 $ bin/login.sh
+> cd my_app
 > mix phx.gen.schema Blog.Post blog_posts title:string
 > exit
 ```
@@ -120,3 +95,12 @@ $ bin/stop.sh
 $ exit
 % vagrant halt
 ```
+
+## About source code synchronization
+
+The `projects` directory on the host PC and the `/projects` directory in the `web`
+container are synchronized in both directions.
+A file or directory created or updated in one directory is quickly created or updated
+in the other directory.
+
+However, file and directory deletions are not synchronized. Also, if a file or directory is moved or renamed, the file or path remains in the original path. Please delete it manually.

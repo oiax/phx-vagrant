@@ -10,6 +10,7 @@ Vagrant を用いて Elixir/Phoenix アプリケーションの開発・学習�
 * Phoenix 1.4.11
 * Node.js 10.18
 * npm 6.13
+* PostgreSQL 12 (on Alpine)
 
 ## 必要なソフトウェア
 
@@ -42,46 +43,15 @@ $ bin/setup.sh
 
 ```
 $ bin/login.sh
-> mix phx.new . --app my_app --module MyApp
+> mix phx.new my_app
+> cd my_app
 ```
 
 ## データベース接続設定の変更
 
 テキストエディタで `config/dev.exs` を開き、`hostname` の値を `"localhost"` から `"db"` に変更してください。
 
-## phoenix_live_reload の設定
-
-以下の記述を `config/dev.exs` の `MyApp.Repo に関する設定の後に追加してください。
-
-```
-if System.get_env("COMPOSE_FILE") == "docker-compose.vagrant.yml" do
-  config :phoenix_live_reload,
-    backend: :fs_poll,
-    backend_opts: [
-      interval: 500
-    ],
-    dirs: [
-      "priv/static",
-      "priv/gettext",
-      "lib/my_app_web/templates",
-      "lib/my_app_web/views"
-    ]
-end
-```
-
-## webpack の設定
-
-`assets/webpack.config.js` の末尾の `});` の前に以下の記述を追加してください。
-
-```
-  watchOptions: {
-    aggregateTimeout: 300,
-    poll: 1000,
-    ignored: /node_modules/
-  }
-```
-
-直前行の `]` の後にコンマを追加してください。
+ホストマシンまたはDockerコンテナのテキストエディタを使用して編集できます。
 
 ## データベースの作成
 
@@ -94,14 +64,19 @@ end
 ```
 > exit
 $ bin/start.sh
+> cd my_app
+> mix phx.server
 ```
 
-`Ctrl-C` を入力すればサーバーを停止できます。
+ホストマシンのブラウザで `http://localhost:4000` を開いてください。
+
+ターミナル上で `Ctrl-C` を入力すればサーバーを停止できます。
 
 ## Dockerコンテナ内での作業
 
 ```
 $ bin/login.sh
+> cd my_app
 > mix phx.gen.schema Blog.Post blog_posts title:string
 > exit
 ```
@@ -118,3 +93,9 @@ $ bin/stop.sh
 $ exit
 % vagrant halt
 ```
+
+## ソースコードの同期について
+
+ホストPCの `projects` ディレクトリと `web` コンテナ内の `/projects` ディレクトリは双方向に同期されています。一方のディレクトリ内で作成または更新されたファイルやディレクトリは、短時間のうちに他方のディレクトリでも作成または更新されます。
+
+ただし、ファイルおよびディレクトリの削除は同期されません。また、ファイルやディレクトリの移動または名前変更が行われた場合、元のパスにファイルやパスが残ります。手動で削除してください。
