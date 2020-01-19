@@ -98,9 +98,24 @@ $ exit
 
 ## About source code synchronization
 
-The `projects` directory on the host PC and the `/projects` directory in the `web`
-container are synchronized in both directions.
-A file or directory created or updated in one directory is quickly created or updated
-in the other directory.
+The `projects` directory (**A**) on the host PC and the `/projects` directory (**B**)
+in the `web` container are synchronized in both directions.
+A file updated in one directory is quickly updated in the other directory.
 
-However, file and directory deletions are not synchronized. Also, if a file or directory is moved or renamed, the file or path remains in the original path. Please delete it manually.
+However, synchronization of newly created files and directories is a one-way from
+**A** to **B**. Also, file and directory deletions are not synchronized in either
+direction. If a file or directory is moved or renamed on one side, the file or
+directory remains on the original path on the other side.
+
+If you want to create, delete, or rename files and directories in **B** and sync them to **A**, run the following command on the guest machine (Ubuntu)
+
+```
+$ bin/sync_from_container.sh
+```
+
+If you want to delete and rename files and directories in **A** and sync them to
+**B**, execute the following command on the guest machine (Ubuntu).
+
+```
+$ bin/sync_to_container.sh
+``
