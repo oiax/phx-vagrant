@@ -100,17 +100,11 @@ $ exit
 
 The `projects` directory (**A**) on the host PC and the `/projects` directory (**B**)
 in the `web` container are automatically synchronized in both directions.
-A file updated in one directory is quickly updated in the other directory.
+Files created and updated in one directory are created and updated in the other directory almost instantly.
 
-However, automatic synchronization of newly created files and directories is a
-one-way from **A** to **B**. If you want to create files and directories in **B**
-and sync them to **A**, run the following command on the guest machine (Ubuntu)
+However, there is a delay of a few seconds before files and directories created on **B** are reflected on **A**.
 
-```
-$ bin/sync_from_container.sh
-```
-
-Deletion of files and directories is not automatically synced in either direction, but you can sync from **A** to **B** with the following command:
+Deletion of files and directories is not automatically synced, but you can sync from **A** to **B** with the following command:
 
 ```
 $ bin/sync_to_container.sh
