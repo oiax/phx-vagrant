@@ -23,6 +23,10 @@ Vagrant.configure("2") do |config|
       sudo usermod -aG docker vagrant
     fi
 
+    if [[ ! -f "/usr/bin/inotifywatch" ]]; then
+      sudo apt-get install -y inotify-tools
+    fi
+
     if ! grep -q "fs.inotify.max_user_watches" /etc/sysctl.conf ; then
       echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
       sudo sysctl -p
@@ -43,6 +47,12 @@ Vagrant.configure("2") do |config|
       sudo cp /vagrant/etc/sync_vagrant_and_work_dirs.service /etc/systemd/system/
       sudo systemctl -q enable sync_vagrant_and_work_dirs
       sudo systemctl -q start sync_vagrant_and_work_dirs
+    fi
+
+    if [ ! -f "/etc/systemd/system/sync_new_files_on_work_dir.service" ]; then
+      sudo cp /vagrant/etc/sync_new_files_on_work_dir.service /etc/systemd/system/
+      sudo systemctl -q enable sync_new_files_on_work_dir
+      sudo systemctl -q start sync_new_files_on_work_dir
     fi
   SHELL
 end

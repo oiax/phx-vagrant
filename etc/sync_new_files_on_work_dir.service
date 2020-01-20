@@ -1,0 +1,13 @@
+[Unit]
+Description = Sync new files on /work directory to /vagrant
+
+[Service]
+ExecStart = /vagrant/bin/sync_new_files_on_work_dir.sh
+Restart = always
+Type = simple
+User = vagrant
+Group = vagrant
+SyslogIdentifier = sync-new-files-on-work-dir
+
+[Install]
+WantedBy = multi-user.target
