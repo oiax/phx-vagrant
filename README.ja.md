@@ -20,8 +20,10 @@ Vagrant を用いて Elixir/Phoenix アプリケーションの開発・学習�
 
 ## 対応OS
 
+* macOS 10.15 Catalina
 * macOS 10.14 Mojave
-* Windows 10
+* Windows 10 Pro
+* Windows 10 Home
 
 ## 環境構築手順
 

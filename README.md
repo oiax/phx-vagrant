@@ -22,8 +22,10 @@ A set of configuration files etc. to start developing and learning Elixir/Phoeni
 
 ## Supported OS
 
+* macOS 10.15 Catalina
 * macOS 10.14 Mojave
-* Windows 10
+* Windows 10 Pro
+* Windows 10 Home
 
 ## Environment Building Procedure
 
