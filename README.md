@@ -7,20 +7,18 @@ A set of configuration files etc. to start developing and learning Elixir/Phoeni
 ## Environment to be built
 
 * Debian 10 (Buster)
-* Erlang/OTP 22.1.8
-* Elixir 1.9.4
-* Phoenix 1.4.11
+* Erlang/OTP 22.2.4
+* Elixir 1.10.0
+* Phoenix 1.4.12
 * Node.js 10.18
 * npm 6.13
 * PostgreSQL 12 (on Alpine)
 
 ## Required softwares
 
-* Oracle VM VirtualBox 6.0
+* Oracle VM VirtualBox 6.0/6.1
 * Vagrant 2.2 or above
 * Git 2.7 or above
-
-As of January 12, 2020, Vagrant does not support VirtualBox 6.1.
 
 ## Supported OS
 

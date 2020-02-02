@@ -5,20 +5,18 @@ Vagrant を用いて Elixir/Phoenix アプリケーションの開発・学習�
 ## 構築される環境
 
 * Debian 10 (Buster)
-* Erlang/OTP 22.1.8
-* Elixir 1.9.4
-* Phoenix 1.4.11
+* Erlang/OTP 22.2.4
+* Elixir 1.10.0
+* Phoenix 1.4.12
 * Node.js 10.18
 * npm 6.13
 * PostgreSQL 12 (on Alpine)
 
 ## 必要なソフトウェア
 
-* Oracle VM VirtualBox 6.0
+* Oracle VM VirtualBox 6.0/6.1
 * Vagrant 2.2 以上
 * Git 2.7 以上
-
-2020年1月12日現在、Vagrant は VirtualBox 6.1 に対応していません。
 
 ## 対応OS
 
