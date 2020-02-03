@@ -8,6 +8,9 @@ Type = simple
 User = vagrant
 Group = vagrant
 SyslogIdentifier = sync-new-files-on-work-dir
+RestartSec=30
+StartLimitInterval=360
+StartLimitBurst=10
 
 [Install]
 WantedBy = multi-user.target
