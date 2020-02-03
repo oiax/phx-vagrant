@@ -18,6 +18,16 @@ Vagrant.configure("2") do |config|
     sudo apt-get update
     sudo apt-get upgrade -yq
 
+    if ! grep -q "ntp.nict.jp" /etc/systemd/timesyncd.conf ; then
+      echo "NTP=ntp.nict.jp" | sudo tee -a /etc/systemd/timesyncd.conf
+      echo "FallbackNTP=0.jp.pool.ntp.org" | sudo tee -a /etc/systemd/timesyncd.conf
+      sudo systemctl daemon-reload
+      sudo timedatectl set-ntp off
+      sudo timedatectl set-ntp on
+      sudo systemctl enable systemd-timesyncd.service
+      sudo systemctl start systemd-timesyncd.service
+    fi
+
     if [[ ! -f "/usr/bin/docker" ]]; then
       /vagrant/bin/install_docker_on_ubuntu.sh
       sudo usermod -aG docker vagrant
