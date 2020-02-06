@@ -8,7 +8,7 @@ A set of configuration files etc. to start developing and learning Elixir/Phoeni
 
 * Debian 10 (Buster)
 * Erlang/OTP 22.2.4
-* Elixir 1.10.0
+* Elixir 1.9.4
 * Phoenix 1.4.12
 * Node.js 10.18
 * npm 6.13
