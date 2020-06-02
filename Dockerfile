@@ -1,4 +1,4 @@
-FROM elixir:1.9.4
+FROM elixir:1.10.3
 
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
 ENV DEBIAN_FRONTEND noninteractive
@@ -8,7 +8,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get -y install git vim sudo inotify-tools
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
 RUN apt-get -y install nodejs
 
@@ -25,4 +25,4 @@ WORKDIR /projects
 
 RUN mix local.hex --force
 RUN mix local.rebar --force
-RUN mix archive.install --force hex phx_new 1.4.12
+RUN mix archive.install --force hex phx_new 1.5.3
